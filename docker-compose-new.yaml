@@ -1,0 +1,9 @@
+version: '2'
+services:
+  proxy:
+    container_name: nginx-new
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./Content:/home/

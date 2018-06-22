@@ -1,0 +1,15 @@
+version: '2'
+services:
+  proxy:
+    container_name: nginx-ubuntu
+    image: nginx-ubuntu:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile-ubuntu
+    ports:
+      - "443:443"
+    volumes:
+      - ./Content:/home/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl/:/etc/nginx/ssl/
+    tty: true
