@@ -17,6 +17,9 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 STOPSIGNAL SIGTERM
 
+RUN (export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
+    apt install -y php php-cli)
+
 CMD ["nginx", "-g", "daemon off;"]
 
 WORKDIR /home
