@@ -1,9 +1,0 @@
-version: '2'
-services:
-  proxy:
-    container_name: nginx-old
-    image: nginx:1.13.10
-    ports:
-      - "8080:80"
-    volumes:
-      - ./Content:/home/Content
