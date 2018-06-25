@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+RUN apt update && apt install -y curl wget net-tools nano build-essential 
+RUN (export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
+    apt install -y php php-cli)
+
+EXPOSE 80 8080 443
+
+STOPSIGNAL SIGTERM
+
+COPY ./create_server_files.sh /
+
+ENTRYPOINT ["/create_server_files.sh"]
+
+WORKDIR /home
