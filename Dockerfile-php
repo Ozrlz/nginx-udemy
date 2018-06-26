@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt update && apt install -y curl wget net-tools nano build-essential 
 RUN (export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true && \
-    apt install -y php php-cli)
+    apt install -y php php-cli && > /var/log/php-dump-logs.log )
 
 EXPOSE 80 8080 443
 
@@ -10,6 +10,6 @@ STOPSIGNAL SIGTERM
 
 COPY ./create_server_files.sh /
 
-ENTRYPOINT ["/create_server_files.sh"]
+CMD /bin/bash /create_server_files.sh &&  tail -f /var/log/php-dump-logs.log
 
-WORKDIR /home
+# WORKDIR /home
